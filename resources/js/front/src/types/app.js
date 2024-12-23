@@ -1,0 +1,15 @@
+import './bootstrap';
+import '../../css/app.css';
+import { createApp } from 'vue';
+import App from './src/App.vue';
+import router from "./src/router/router";
+import { createPinia } from 'pinia';
+import axios from 'axios';
+const app = createApp(App);
+// app.use(router).mount("#app");
+axios.defaults.baseURL = 'https://cuore.public.lvh.me/';
+app.use(router);
+app.use(createPinia());
+app.mount("#app");
+// const app = createApp(App);
+// app.mount('#app');

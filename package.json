@@ -1,0 +1,35 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "vite build --watch",
+        "format": "prettier --write 'resources/js/*/src/**/*.{js,ts,vue}'",
+        "lint": "eslint --fix 'resources/js/*/src/**/*.{js,ts,vue}'",
+        "fix": "npm run format && npm run lint",
+        "buildType": "tsc -d --emitDeclarationOnly"
+    },
+    "devDependencies": {
+        "@babel/types": "^7.24.6",
+        "@vitejs/plugin-vue": "^5.0.4",
+        "axios": "^1.6.4",
+        "dayjs": "^1.11.11",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-vue": "^9.26.0",
+        "laravel-vite-plugin": "^1.0.0",
+        "pinia": "^2.1.7",
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.0",
+        "vue": "^3.2.25",
+        "vue-router": "^4.3.0",
+        "vue3-carousel": "^0.3.1",
+        "vuetify": "^3.5.11"
+    },
+    "dependencies": {
+        "bootstrap-icons": "^1.11.3",
+        "sweetalert2": "^11.14.2"
+    }
+}

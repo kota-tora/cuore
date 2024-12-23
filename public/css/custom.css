@@ -1,0 +1,243 @@
+.form-group {
+    margin: 5px 5px;
+}
+
+.form-control {
+    margin-left: 10px;
+}
+
+.Form {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form {*/
+/*        margin-top: 40px;*/
+/*    }*/
+/*}*/
+.Form-Item {
+    border-top: 1px solid #ddd;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item {*/
+/*        padding-left: 14px;*/
+/*        padding-right: 14px;*/
+/*        padding-top: 16px;*/
+/*        padding-bottom: 16px;*/
+/*        flex-wrap: wrap;*/
+/*    }*/
+/*}*/
+/*.Form-Item:nth-child(5) {*/
+/*    border-bottom: 1px solid #ddd;*/
+/*}*/
+.Form-Item-Label {
+    width: 100%;
+    max-width: 248px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 18px;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item-Label {*/
+/*        max-width: inherit;*/
+/*        display: flex;*/
+/*        align-items: center;*/
+/*        font-size: 15px;*/
+/*    }*/
+/*}*/
+.Form-Item-Label.isMsg {
+    margin-top: 8px;
+    margin-bottom: auto;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item-Label.isMsg {*/
+/*        margin-top: 0;*/
+/*    }*/
+/*}*/
+.Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: #5bc8ac;
+    color: #fff;
+    font-size: 14px;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item-Label-Required {*/
+/*        border-radius: 4px;*/
+/*        padding-top: 4px;*/
+/*        padding-bottom: 4px;*/
+/*        width: 32px;*/
+/*        font-size: 10px;*/
+/*    }*/
+/*}*/
+.Form-Item-Input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 48px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item-Input {*/
+/*        margin-left: 0;*/
+/*        margin-top: 18px;*/
+/*        height: 40px;*/
+/*        flex: inherit;*/
+/*        font-size: 15px;*/
+/*    }*/
+/*}*/
+.Form-Item-Textarea {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 216px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+}
+/*@media screen and (max-width: 480px) {*/
+/*    .Form-Item-Textarea {*/
+/*        margin-top: 18px;*/
+/*        margin-left: 0;*/
+/*        height: 200px;*/
+/*        flex: inherit;*/
+/*        font-size: 15px;*/
+/*    }*/
+/*}*/
+.Form-Btn {
+    border-radius: 6px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 280px;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.error-msg {
+    margin: 5px 5px 5px 5px;
+    color: red;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.tabs {
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+.tabs li,
+.tabs label {
+    float: left;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: .3s;
+}
+.tabs li:not(:first-child),
+.tabs label:not(:first-of-type) {
+    border-left: none;
+}
+.tabs li.active,
+.tabs :checked + label {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    cursor: auto;
+}
+
+@media screen and (max-width: 480px) {
+    .Form {
+        margin-top: 40px;
+    }
+    .Form-Item {
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        flex-wrap: wrap;
+    }
+    .Form-Item-Label {
+        max-width: inherit;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+    }
+    .Form-Item-Label.isMsg {
+        margin-top: 0;
+    }
+    .Form-Item-Label-Required {
+        border-radius: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        width: 32px;
+        font-size: 10px;
+    }
+    .Form-Item-Input {
+        margin-left: 0;
+        margin-top: 18px;
+        height: 40px;
+        flex: inherit;
+        font-size: 15px;
+    }
+    .Form-Item-Textarea {
+        margin-top: 18px;
+        margin-left: 0;
+        height: 200px;
+        flex: inherit;
+        font-size: 15px;
+    }
+    .Form-Btn {
+        margin-top: 24px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    .contents{
+        overflow: hidden;
+        margin-top: -1px;
+    }
+    .contents li {
+        /*width: 320px;*/
+        padding: 2px;
+        border: 1px solid #ccc;
+    }
+
+    .vue_radio input{
+        display: none;
+    }
+}

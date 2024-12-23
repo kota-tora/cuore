@@ -1,0 +1,18 @@
+extends:
+  # eslintデフォルト推奨ルール
+  - 'eslint:recommended'
+  # vue3推奨のルール
+  - 'plugin:vue/vue3-recommended'
+  # prettierのルール
+  - 'prettier'
+
+env:
+  browser: true
+  es2022: true
+  # setup関数内でのコンパイラマクロをサポート
+  vue/setup-compiler-macros: true
+
+parserOptions:
+  ecmaVersion: 13
+
+rules: {}
