@@ -7,14 +7,15 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/front/app.ts'],
             refresh: ['resources/js/**/src/**'],
-            // buildDirectory: 'bundle/'
+            buildDirectory: 'build'
         }),
         vue(),
     ],
 build: {
     manifest: true, // 本番用ビルドでmanifest.jsonを生成
+    outDir: 'public/build',
+    rollupOptions: {
+        input: './resources/js/front/app.ts', // エントリーポイントを指定
     },
-// build: {
-//     outDir: 'public/bundle', // 同じパスを明示的に指定
-//     },
+    },
 });
