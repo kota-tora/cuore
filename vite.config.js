@@ -15,7 +15,10 @@ build: {
     // manifest: true, // 本番用ビルドで .vite/にmanifest.json を生成する。エラーになる
     outDir: 'public/build/', // 出力先ディレクトリを明示的に指定
     rollupOptions: {
-        input: './resources/js/front/app.ts', // エントリーポイントを指定
+        input: {
+            app: 'resources/js/front/app.ts',
+            style: 'resources/css/app.css', // CSS ファイルを明示的に指定
+        },
     },
     },
 });
