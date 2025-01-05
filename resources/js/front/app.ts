@@ -17,7 +17,7 @@ dayjs.locale('ja');
 const app= createApp(App);
 // app.use(router).mount("#app");
 
-axios.defaults.baseURL = 'https://cuore.public.lvh.me/';
+axios.defaults.baseURL = import.meta.env.VITE_APP_URL;
 
 
 app.provide('dayjs', dayjs);
@@ -27,7 +27,5 @@ app.use(router);
 app.use(createPinia());
 app.mount("#app");
 
-// const app = createApp(App);
-// app.mount('#app');
 
 
