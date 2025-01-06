@@ -178,6 +178,14 @@ li{
     cursor: auto;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
 @media screen and (max-width: 480px) {
     .Form {
         margin-top: 40px;
@@ -227,6 +235,22 @@ li{
         font-size: 16px;
     }
 
+    .Form-Btn-min {
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        letter-spacing: 0.05em;
+        background: #5bc8ac;
+        color: #fff;
+        font-weight: bold;
+        margin-top: 24px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 30%;
+        font-size: 16px;
+    }
+
     .contents{
         overflow: hidden;
         margin-top: -1px;
@@ -239,5 +263,9 @@ li{
 
     .vue_radio input{
         display: none;
+    }
+
+    .ctl-group {
+        text-align: center;
     }
 }

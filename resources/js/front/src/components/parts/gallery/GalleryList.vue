@@ -165,11 +165,11 @@
                   <img class="gallery-img" v-if="galleries.length > 0" :src="`storage/images/gallery/${galleries[currentImageIndex].name}`" alt="" />
                 </div>
                 <div class="ctl-group sp-vertical">
-                  <div class="inline-ctl">
-                    <button class="control-btn Form-Btn" @click.stop="prev()" name="prev-btn"><<</button>
+                  <div class="inline-ctl mr-10">
+                    <button class="control-btn Form-Btn-min" @click.stop="prev()" name="prev-btn"><<</button>
                   </div>
-                  <div class="inline-ctl f-right">
-                    <button class="control-btn Form-Btn" @click.stop="next()" name="next-btn">>></button>
+                  <div class="inline-ctl ml-10">
+                    <button class="control-btn Form-Btn-min" @click.stop="next()" name="next-btn">>></button>
                   </div>
                 </div>
                 <span class="ctl-left sp-wide">
@@ -178,7 +178,7 @@
                   </div>
                 </span>
                 <span class="ctl-right sp-wide">
-                  <div class="inline-ctl f-right">
+                  <div class="inline-ctl">
                     <button class="control-btn Form-Btn mt-0" @click.stop="next()" name="next-btn">>></button>
                   </div>
                 </span>
