@@ -241,7 +241,7 @@
     text-align: center;
   }
   .control-btn {
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
@@ -255,8 +255,8 @@
   }
   .close {
     text-align: right;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 3px;
   }
   
   .close-btn {
