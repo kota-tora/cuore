@@ -78,6 +78,12 @@
     document.addEventListener('wheel', noscroll, {passive: false});
     
     if (dialog.value) {
+      // 画面最上部にスクロールする
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
       currentImageIndex.value = index;
       dialog.value.showModal();
       isOpenDialog.value = true;
