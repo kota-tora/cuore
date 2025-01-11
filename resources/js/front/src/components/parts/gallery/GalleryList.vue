@@ -164,22 +164,14 @@
                 <div @click.stop="" class="contents">
                   <img class="gallery-img" v-if="galleries.length > 0" :src="`storage/images/gallery/${galleries[currentImageIndex].name}`" alt="" />
                 </div>
-                <div class="ctl-group sp-vertical">
-                  <div class="inline-ctl mr-10">
-                    <button class="control-btn Form-Btn-min" @click.stop="prev()" name="prev-btn"><<</button>
-                  </div>
-                  <div class="inline-ctl ml-10">
-                    <button class="control-btn Form-Btn-min" @click.stop="next()" name="next-btn">>></button>
-                  </div>
-                </div>
                 <span class="ctl-left sp-wide">
                   <div class="inline-ctl">
-                    <button class="control-btn Form-Btn mt-0" @click.stop="prev()" name="prev-btn"><<</button>
+                    <button class="control-btn Form-Btn mt-0" @click.stop="prev()" name="prev-btn"><</button>
                   </div>
                 </span>
                 <span class="ctl-right sp-wide">
                   <div class="inline-ctl">
-                    <button class="control-btn Form-Btn mt-0" @click.stop="next()" name="next-btn">>></button>
+                    <button class="control-btn Form-Btn mt-0" @click.stop="next()" name="next-btn">></button>
                   </div>
                 </span>
               </div>
@@ -216,7 +208,7 @@
     font-size: 15px;
   }
   .sp-wide {
-    display: none;
+    display: block;
   }
   .image-box {
     cursor: zoom-in;
@@ -269,6 +261,24 @@
     margin-top: 0px
   }
   
+  .Form-Btn {
+    width: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+  }
+  
+  .ctl-left {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+  }
+  
+  .ctl-right {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+  }
+  
   @media (orientation: landscape) {
     /* ここに横向きのデバイスに適用するスタイルを書く */
     
@@ -293,23 +303,6 @@
       right: 10px;
       position: absolute;
       margin-right: 10px;
-    }
-    
-    .Form-Btn {
-      width: 100px;
-      background-color: rgba(171, 171, 171, 0.3);
-    }
-    
-    .ctl-left {
-      position: absolute;
-      top: 50%;
-      left: 10px;
-    }
-    
-    .ctl-right {
-      position: absolute;
-      top: 50%;
-      right: 10px;
     }
     
     .contents img {
