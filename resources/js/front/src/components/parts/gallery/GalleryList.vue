@@ -203,8 +203,15 @@ import { onMounted, Ref, ref } from 'vue';
             >
               <div class="title">{{ `${video.photoDate} ${video.title}` }}</div>
               <div id="video-wrap" class="video-wrap" >
-                <video id="video-play" ref="videos" :src="`storage/images/gallery/movies/${video.name}`" preload="none" playsinline controls controlslist="nodownload playbackRate" ></video>
-                <div class="video-btn" @click="videoPlay(index)"></div>
+<!--                <video id="video-play" ref="videos" :src="`storage/images/gallery/movies/${video.name}`" preload="none" playsinline controls controlslist="nodownload playbackRate" ></video>-->
+<!--                <div class="video-btn" @click="videoPlay(index)"></div>-->
+                <iframe
+                  class="youtube"
+                  :src="`https://www.youtube.com/embed/${video.name}`"
+                  title="YouTube video player"
+                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
               </div>
             </div>
           </div>
@@ -343,6 +350,9 @@ import { onMounted, Ref, ref } from 'vue';
   
   .video-wrap {
     position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9のアスペクト比 */
+    height: 0; /* 高さをゼロにして、paddingで高さを調整 */
   }
   .video-btn {
     content: "";
@@ -373,5 +383,15 @@ import { onMounted, Ref, ref } from 'vue';
     margin-bottom: 50px; /*ボックス同士の上下間の余白*/
     text-align: center; /*テキストをセンタリング*/
     font-size: 0.7rem; /*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
+  }
+  
+  
+  iframe.youtube {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 </style>
