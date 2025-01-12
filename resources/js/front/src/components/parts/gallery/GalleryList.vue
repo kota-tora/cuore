@@ -207,7 +207,7 @@ import { onMounted, Ref, ref } from 'vue';
 <!--                <div class="video-btn" @click="videoPlay(index)"></div>-->
                 <iframe
                   class="youtube"
-                  :src="`https://www.youtube.com/embed/${video.name}`"
+                  :src="`https://www.youtube.com/embed/${video.name}&quality=hd1080`"
                   title="YouTube video player"
                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen>
