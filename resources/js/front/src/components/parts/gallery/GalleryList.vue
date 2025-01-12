@@ -201,7 +201,7 @@ import { onMounted, Ref, ref } from 'vue';
             >
               <div class="title">{{ `${video.photoDate} ${video.title}` }}</div>
               <div id="video-wrap" class="video-wrap" @click="videoPlay(index)">
-                <video id="video-play" @click="videoPlay(index)" ref="videos" :src="`storage/images/gallery/movies/${video.name}#t=0.001`" controls controlslist="nodownload playbackRate" ></video>
+                <video id="video-play" @click="videoPlay(index)" ref="videos" :src="`storage/images/gallery/movies/${video.name}#t=0.01`" controls controlslist="nodownload playbackRate" ></video>
                 <div class="video-btn"></div>
               </div>
             </div>
