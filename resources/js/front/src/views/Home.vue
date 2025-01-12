@@ -33,7 +33,7 @@ onMounted(function () {
 
         <div id="lunchA" class="list2">
           <figure ref="lunchA" class="up">
-            <img :src="`images/IMG_home01.jpg`" alt="今週のランチA" />
+            <img :src="`images/IMG_home01.jpg`" alt="ホーム写真1" />
           </figure>
 
           <div class="text">
@@ -46,12 +46,12 @@ onMounted(function () {
 
         <div id="lunchB" class="list2">
           <figure ref="lunchB" class="up">
-            <img :src="`images/IMG_home02.jpg`" alt="今週のランチB" />
+            <img :src="`images/IMG_3.jpg`" alt="ホーム写真2" />
           </figure>
           <div class="text">
-            <h4>2024年 1月 島田</h4>
+            <h4>2023年 12月</h4>
             <ul>
-              <li>大会終了後に</li>
+              <li>忘年会にて</li>
             </ul>
           </div>
         </div>

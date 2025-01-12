@@ -3,6 +3,7 @@ export type VideoGallery = {
   name: string,
   title: string,
   upFlg: boolean,
+  photoDate: string,
   createdAt: string,
   updatedAt: string,
 }

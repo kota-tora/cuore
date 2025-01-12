@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-  import { onMounted, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue';
   import { galleryStore } from '../../../store/Gallery';
   import { Gallery } from '../../../types/src/store/Gallery';
   import { VideoGallery } from '../../../types/src/store/VideoGallery';
@@ -18,7 +18,8 @@
   // 動画再生中フラグ
   const isPlaying = ref(false);
   // videoタグのDOM
-  const video = ref();
+  const videos = ref<(HTMLVideoElement | null)[]>([]);
+  
   // 垂直スクロール位置
   let scrollY = ref(0);
   // 画像イメージリスト格納場所
@@ -31,11 +32,15 @@
    * @param index
    */
   const videoPlay = (index : number) => {
+    if (!videos.value) return;
+    const video = videos.value[index];
+    if (!video) return;
+    
     if (!isPlaying.value) {
-      video.value[index].play();
+      video.play();
       isPlaying.value = true;
     } else {
-      video.value[index].pause();
+      video.pause();
       isPlaying.value = false;
     }
   }
@@ -196,7 +201,7 @@
             >
               <div class="title">{{ `${video.photoDate} ${video.title}` }}</div>
               <div id="video-wrap" class="video-wrap" @click="videoPlay(index)">
-                <video id="video-play" @click="videoPlay()" ref="video" :src="`storage/images/gallery/movies/${video.name}`" controls controlslist="nodownload playbackRate" ></video>
+                <video id="video-play" @click="videoPlay(index)" ref="videos" :src="`storage/images/gallery/movies/${video.name}`" controls controlslist="nodownload playbackRate" ></video>
                 <div class="video-btn"></div>
               </div>
             </div>
