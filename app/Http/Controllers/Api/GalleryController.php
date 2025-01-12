@@ -24,4 +24,9 @@ class GalleryController extends Controller
         $type = $request->type ?? '';
         return response($this->gallery_service->getGalleryByApi($type), 200);
     }
+
+    public function getUpYoutubeMovies()
+    {
+        return response($this->gallery_service->getYoutubeMoviesByApi(), 200);
+    }
 }

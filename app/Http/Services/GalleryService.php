@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\Gallery;
+use App\Models\YoutubeMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -10,10 +11,12 @@ use Illuminate\Support\Str;
 class GalleryService
 {
     protected $gallery;
+    protected $youtube_movie;
 
-    public function __construct(Gallery $gallery)
+    public function __construct(Gallery $gallery, YoutubeMovie $youtube_movie)
     {
         $this->gallery = $gallery;
+        $this->youtube_movie = $youtube_movie;
     }
 
     /**
@@ -30,6 +33,25 @@ class GalleryService
                 'title' => $record->title,
                 'upFlg' => $record->up_flg,
                 'photoDate' => $record->photo_date,
+                'createdAt' => $record->created_at,
+                'updatedAt' => $record->updated_at,
+            ];
+        });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYoutubeMoviesByApi()
+    {
+        $galleries = $this->youtube_movie->where('up_flg', 1)->orderBy('youtube_movie_id', 'desc')->get();
+        return $galleries->map(function ($record) {
+            return [
+                'youtubeMovieId' => $record->youtube_movie_id,
+                'url' => $record->url,
+                'title' => $record->title,
+                'upFlg' => $record->up_flg,
+                'filmingDate' => $record->filming_date,
                 'createdAt' => $record->created_at,
                 'updatedAt' => $record->updated_at,
             ];

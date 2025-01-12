@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import { onMounted, Ref, ref } from 'vue';
+  import { onMounted, Ref, ref } from 'vue';
   import { galleryStore } from '../../../store/Gallery';
   import { Gallery } from '../../../types/src/store/Gallery';
-  import { VideoGallery } from '../../../types/src/store/VideoGallery';
+  import { YoutubeMovie } from '../../../types/src/store/YoutubeMovie';
   
   // ダイアログで表示している画像のindex
   const currentImageIndex = ref(0);
@@ -15,37 +15,13 @@ import { onMounted, Ref, ref } from 'vue';
   // 表示中のタブ 1:画像 2:動画
   const isActiveTab = ref('1');
   const isOpenDialog = ref(false);
-  // 動画再生中フラグ
-  const isPlaying = ref(false);
-  // videoタグのDOM
-  const videos = ref<(HTMLVideoElement | null)[]>([]);
   
   // 垂直スクロール位置
   let scrollY = ref(0);
   // 画像イメージリスト格納場所
   let galleries = ref<Gallery[]>([])
   // 動画リスト格納場所
-  let videGalleries = ref<Gallery[]>([])
-  
-  /**
-   * 動画再生停止
-   * @param index
-   */
-  const videoPlay = (index : number) => {
-    if (!videos.value) return;
-    const video = videos.value[index];
-    if (!video) return;
-    
-    console.log('video click')
-    
-    if (!isPlaying.value) {
-      video.play();
-      isPlaying.value = true;
-    } else {
-      video.pause();
-      isPlaying.value = false;
-    }
-  }
+  let videGalleries = ref<YoutubeMovie[]>([])
   
   onMounted(async () => {
     // スクロール時イベント
@@ -58,10 +34,10 @@ import { onMounted, Ref, ref } from 'vue';
       galleries.value.push(record);
     })
     // 動画取得
-    await gallery.fetchAllVideos();
+    await gallery.fetchYoutubeVideos();
     // 動画ギャラリーに追加
-    const galleryVideoRecords = gallery.getVideoList;
-    galleryVideoRecords.map((record: VideoGallery) => {
+    const galleryVideoRecords = gallery.getYoutubeMovieList;
+    galleryVideoRecords.map((record: YoutubeMovie) => {
       videGalleries.value.push(record);
     })
   });
@@ -201,13 +177,11 @@ import { onMounted, Ref, ref } from 'vue';
               class="image-box one-column-list"
               tabindex="0"
             >
-              <div class="title">{{ `${video.photoDate} ${video.title}` }}</div>
+              <div class="title">{{ `${video.filmingDate} ${video.title}` }}</div>
               <div id="video-wrap" class="video-wrap" >
-<!--                <video id="video-play" ref="videos" :src="`storage/images/gallery/movies/${video.name}`" preload="none" playsinline controls controlslist="nodownload playbackRate" ></video>-->
-<!--                <div class="video-btn" @click="videoPlay(index)"></div>-->
                 <iframe
                   class="youtube"
-                  :src="`https://www.youtube.com/embed/${video.name}&quality=hd1080`"
+                  :src="`https://www.youtube.com/embed/${video.url}&quality=hd1080`"
                   title="YouTube video player"
                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen>

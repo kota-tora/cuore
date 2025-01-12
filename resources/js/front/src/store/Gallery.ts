@@ -2,11 +2,13 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 import { Gallery } from '../types/src/store/Gallery';
 import { VideoGallery } from '../types/src/store/VideoGallery';
+import { YoutubeMovie } from '../types/src/store/YoutubeMovie';
 
 export const galleryStore = defineStore('gallery', {
-  state: () : { galleryList: Gallery[], videoList: VideoGallery[] } => ({
+  state: () : { galleryList: Gallery[], videoList: VideoGallery[], youtubeMovieList: YoutubeMovie[] } => ({
     galleryList: [],
-    videoList: []
+    videoList: [],
+    youtubeMovieList: [],
   }),
   getters: {
     getGalleryList(state) {
@@ -14,6 +16,9 @@ export const galleryStore = defineStore('gallery', {
     },
     getVideoList(state) {
       return state.videoList;
+    },
+    getYoutubeMovieList(state) {
+      return state.youtubeMovieList;
     }
   },
   actions: {
@@ -35,6 +40,12 @@ export const galleryStore = defineStore('gallery', {
       })
         .then((response) => {
           this.videoList = response.data;
+        }).catch((err) => console.log(err));
+    },
+    async fetchYoutubeVideos() {
+      await axios.get('api/get_youtube_movies')
+        .then((response) => {
+          this.youtubeMovieList = response.data;
         }).catch((err) => console.log(err));
     }
   }
