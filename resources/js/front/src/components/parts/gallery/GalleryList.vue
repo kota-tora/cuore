@@ -36,6 +36,8 @@ import { onMounted, Ref, ref } from 'vue';
     const video = videos.value[index];
     if (!video) return;
     
+    console.log('video click')
+    
     if (!isPlaying.value) {
       video.play();
       isPlaying.value = true;
@@ -200,9 +202,9 @@ import { onMounted, Ref, ref } from 'vue';
               tabindex="0"
             >
               <div class="title">{{ `${video.photoDate} ${video.title}` }}</div>
-              <div id="video-wrap" class="video-wrap" @click="videoPlay(index)">
-                <video id="video-play" @click="videoPlay(index)" ref="videos" :src="`storage/images/gallery/movies/${video.name}#t=0.1`" playsinline controls controlslist="nodownload playbackRate" ></video>
-                <div class="video-btn"></div>
+              <div id="video-wrap" class="video-wrap" >
+                <video id="video-play" ref="videos" :src="`storage/images/gallery/movies/${video.name}#t=0.1`" playsinline controls controlslist="nodownload playbackRate" ></video>
+                <div class="video-btn" @click="videoPlay(index)"></div>
               </div>
             </div>
           </div>
@@ -345,7 +347,7 @@ import { onMounted, Ref, ref } from 'vue';
   .video-btn {
     content: "";
     position: absolute;
-    top:0;
+    top:30px;
     left:0;
     right:0;
     bottom:60px; /*コントローラー分下部に余白を*/
