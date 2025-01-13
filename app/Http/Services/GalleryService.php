@@ -44,7 +44,12 @@ class GalleryService
      */
     public function getYoutubeMoviesByApi()
     {
-        $galleries = $this->youtube_movie->where('up_flg', 1)->orderBy('youtube_movie_id', 'desc')->get();
+        $galleries = $this->youtube_movie
+            ->where('up_flg', 1)
+            ->orderBy('filming_date', 'desc')
+            ->orderBy('youtube_movie_id', 'desc')
+            ->get();
+
         return $galleries->map(function ($record) {
             return [
                 'youtubeMovieId' => $record->youtube_movie_id,
