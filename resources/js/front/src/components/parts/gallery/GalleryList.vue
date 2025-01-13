@@ -61,12 +61,6 @@
     document.addEventListener('wheel', noscroll, {passive: false});
     
     if (dialog.value) {
-      // 画面最上部にスクロールする
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      
       currentImageIndex.value = index;
       dialog.value.showModal();
       isOpenDialog.value = true;
@@ -82,11 +76,6 @@
     // スクロール禁止
     document.removeEventListener('touchmove', noscroll);
     document.removeEventListener('wheel', noscroll);
-    // モーダルを開く前の位置にスクロールする
-    window.scrollTo({
-      top: scrollY.value,
-      behavior: 'smooth'
-    });
   }
   
   /**
@@ -145,7 +134,7 @@
                 <img :src="`storage/images/gallery/${gallery.name}`" alt="" />
               </div>
             </div>
-            <dialog ref="dialog" class="image-dialog" @click="handleCloseDialog()">
+            <dialog ref="dialog" class="image-dialog custom-dialog" @click="handleCloseDialog()">
               <div class="dialog-contents" @click.stop>
                 <div class="close">
                   <button class="close-btn" @click="handleCloseDialog()" name="prev-btn">x</button>
@@ -208,16 +197,31 @@
     cursor: zoom-in;
     display: inline-block;
   }
-  .image-dialog {
-    max-width: 100%;
-    padding: 0;
+  
+  /* dialogタグの基本スタイル */
+  .custom-dialog {
+    position: fixed; /* ビューポートに固定 */
+    inset: 0; /* top, right, bottom, left を 0 に設定 */
+    margin: auto; /* 中央に配置 */
+    transform: none; /* transformをリセット */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
     background-color: black;
-    
-    &::backdrop {
-      cursor: zoom-out;
-      background: rgba(0, 0, 0, 0.8);
-    }
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 95%;
+    z-index: 1000;
+    padding: 1px;
   }
+  
+  /* 背景の暗幕 */
+  .custom-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
   .contents img {
     vertical-align: top;
     width: 100vw;
@@ -275,10 +279,6 @@
   
   @media (orientation: landscape) {
     /* ここに横向きのデバイスに適用するスタイルを書く */
-    
-    .sp-vertical {
-      display: none;
-    }
     .sp-wide {
       display: block;
     }
@@ -286,7 +286,7 @@
     .image-dialog {
       max-width: 100%;
       max-height: 100%;
-      height: 100%;
+      height: 95%;
     }
     .dialog-contents {
       margin-left: auto;
@@ -328,28 +328,6 @@
     padding-top: 56.25%; /* 16:9のアスペクト比 */
     height: 0; /* 高さをゼロにして、paddingで高さを調整 */
   }
-  .video-btn {
-    content: "";
-    position: absolute;
-    top:30px;
-    left:0;
-    right:0;
-    bottom:60px; /*コントローラー分下部に余白を*/
-    cursor: pointer;
-  }
-  
-  .video-over-lay {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    z-index: 999;
-    background-color: red;
-  }
-  
-  #video-play {
-    mix-blend-mode: normal !important;
-    z-index: -100;
-  }
   
   /*１個あたりのボックス*/
   .one-column-list {
@@ -358,7 +336,6 @@
     text-align: center; /*テキストをセンタリング*/
     font-size: 0.7rem; /*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
   }
-  
   
   iframe.youtube {
     position: absolute;
