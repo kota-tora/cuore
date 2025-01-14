@@ -13,5 +13,5 @@ class YoutubeMovie extends Model
         'up_flg',
     ];
 
-    protected $primaryKey = 'movie_youtube_id';
+    protected $primaryKey = 'youtube_movie_id';
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\RecruitController;
+use App\Http\Controllers\Admin\YoutubeMovieController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
@@ -62,6 +63,13 @@ Route::group([
     Route::get('movie/edit/{movie_id}', [MovieController::class, 'edit'])->name('admin.movie.edit');
     Route::post('movie/update', [MovieController::class, 'update'])->name('admin.movie.update');
     Route::delete('movie/{movie_id}', [MovieController::class, 'destroy'])->name('admin.movie.destroy');
+    // youtube動画一覧
+    Route::get('youtube_movie', [YoutubeMovieController::class, 'index'])->name('admin.youtube_movie');
+    Route::get('youtube_movie/show/{youtube_movie_id}', [YoutubeMovieController::class, 'show'])
+        ->name('admin.youtube_movie.show');
+    Route::put('youtube_movie', [YoutubeMovieController::class, 'updateFlg'])->name('admin.youtube_movie.update_flg');
+    Route::delete('youtube_movie/{youtube_movie_id}', [YoutubeMovieController::class, 'destroy'])
+        ->name('admin.youtube_movie.destroy');
 });
 
 //Route::get('admin/index', [IndexController::class, 'index'])->name('admin.index');
