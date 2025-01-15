@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue';
 import { newsStore } from '../store/News';
 import { useRoute } from 'vue-router';
 import { inject } from 'vue';
+import Header from '../components/parts/Header.vue';
 const dayjs = inject('dayjs');
 
 const isOpenMenu = ref(false);
@@ -24,21 +25,24 @@ onMounted(async () => {
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
         <div v-if="newsDetail.title">
-          <h2>News<span>ニュース</span></h2>
+          <h3>News<span>ニュース</span></h3>
 
-          <h3>{{ newsDetail.title }}</h3>
+          <h4 class="center">{{ newsDetail.title }}</h4>
 
-          <p>{{ newsDetail.content }}</p>
+          <p v-html="newsDetail.content"></p>
+          
           <br />
           <p>{{ dayjs(newsDetail.upDateTime).format('YYYY年M月DD日') }}</p>
         </div>
         <div>
           <router-link :to="{name: 'newsList'}">一覧へ</router-link>
         </div>
+        <a></a>
       </section>
     </main>
 
@@ -70,4 +74,8 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  h4.center {
+    text-align: center;
+  }
+</style>

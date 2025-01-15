@@ -115,40 +115,41 @@ main {
 }
 
 /*ブロック内のh2タグ*/
-main h2 {
+main h2, header h2 {
 	/*opacity: 0;							!*透明度。0は色が出ていない(0%)状態の事。*!*/
 	text-align: center;					/*文字をセンタリング*/
 	font-family: 'Tangerine', cursive, "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "メイリオ", Meiryo, Osaka;
 	font-weight: normal;				/*hタグはデフォルトで太字なので、これを標準にする*/
 	font-size: 4rem;					/*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
-	margin-bottom: 80px;				/*下に空けるスペース*/
+	margin-bottom: 20px;				/*下に空けるスペース*/
+    margin-top: 10px;
 }
 
 /*ブロック内のh2タグ内のspanタグ（日本語の小さい説明用部分）*/
-main h2 span {
+main h2 span, header h2 span {
 	display: block;	
 	font-size: 0.7rem;			/*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
 	letter-spacing: 0.2em;		/*文字間隔を少し広くとる指定*/
 }
 
 /*spanタグの前に「〜」を出力する指定*/
-main h2 span::before {
+main h3 span::before, header h3 span::before{
 	content: "〜";
 	padding-right: 10px;
 }
 
 /*spanタグの後に「〜」を出力する指定*/
-main h2 span::after {
+main h3 span::after, header h3 span::after {
 	content: "〜";
 	padding-left: 10px;
 }
 
 /*ブロック内のh3タグ*/
-main h3 {
+main h3, header h3 {
 	font-weight: normal;	/*hタグはデフォルトで太字なので、これを標準にする*/
 	text-align: center;		/*文字をセンタリング*/
 	font-size: 1.6rem;		/*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
-	margin: 50px 0;			/*上下、左右へとる余白*/
+	margin: 20px 0;			/*上下、左右へとる余白*/
 }
 
 /*mainブロックのpタグ*/

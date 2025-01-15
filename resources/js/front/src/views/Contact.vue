@@ -3,15 +3,17 @@ import Menu from '../components/parts/Menu.vue';
 import { ref } from 'vue';
 const isOpenMenu = ref(false);
 import BaseForm from '../components/parts/BaseForm.vue';
+import Header from '../components/parts/Header.vue';
 
 let caption = ref('お問合せ内容を記入してください');
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
-        <h2>Contact<span>お問い合わせ</span></h2>
+        <h3>Contact<span>お問い合わせ</span></h3>
         <BaseForm
           :show-category="true"
           :caption="caption"

@@ -2,14 +2,16 @@
 import Menu from '../components/parts/Menu.vue';
 import { ref } from 'vue';
 import RecruitForm from '../components/parts/recruit/RecruitForm.vue';
+import Header from '../components/parts/Header.vue';
 const isOpenMenu = ref(false);
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
-        <h2>Recruit<span>メンバー募集</span></h2>
+        <h3>Recruit<span>メンバー募集</span></h3>
         <RecruitForm></RecruitForm>
       </section>
     </main>

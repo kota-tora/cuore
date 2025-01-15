@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import Menu from '../components/parts/Menu.vue';
 import { ref } from 'vue';
+import Header from '../components/parts/Header.vue';
 const isOpenMenu = ref(false);
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
-        <h2>Access<span>アクセス</span></h2>
+        <h3>Access<span>アクセス</span></h3>
 
         <table class="ta1">
           <caption class="left-item">

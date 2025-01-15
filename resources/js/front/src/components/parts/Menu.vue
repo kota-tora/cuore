@@ -15,6 +15,9 @@ const props = defineProps({
         <router-link :to="{ name: 'home' }">Home<span>ホーム</span></router-link>
       </li>
       <li>
+        <router-link :to="{ name: 'newsList' }">News<span>お知らせ</span></router-link>
+      </li>
+      <li>
         <router-link :to="{ name: 'about' }">About<span>チームについて</span></router-link>
       </li>
       <li>

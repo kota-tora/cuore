@@ -34,7 +34,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h2>What's New<span>お知らせ</span></h2>
+    <h3>What's New<span>お知らせ</span></h3>
 
     <div v-for="news in newsLists">
       <dl id="new">

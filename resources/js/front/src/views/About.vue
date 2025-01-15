@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import Menu from '../components/parts/Menu.vue';
 import { ref } from 'vue';
+import Header from '../components/parts/Header.vue';
 
 const isOpenMenu = ref(false);
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
         <Transition appear>
-          <h2>FC Cuore<span>チーム紹介</span></h2>
+          <h3>Introduction<span>チーム紹介</span></h3>
         </Transition>
         <p class="c">FCクオーレです。静岡県西部(掛川~磐田)で活動しているフットサルチームです！！<br /></p>
         <p>

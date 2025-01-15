@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import Menu from '../components/parts/Menu.vue';
 import { IObserver } from '../utils/IObserver';
 import GalleryList from '../components/parts/gallery/GalleryList.vue';
+import Header from '../components/parts/Header.vue';
 
 const isOpenMenu = ref(false);
 // const figure = ref();
@@ -23,10 +24,11 @@ onMounted(() => {
 <!--        <a href="index.html"><img :src="`images/logo.png`" alt="Sample Cafe" /></a>-->
 <!--      </h1>-->
 <!--    </header>-->
-
+    
+    <Header></Header>
     <main>
       <section>
-        <h2>Gallery<span>ギャラリー</span></h2>
+        <h3>Gallery<span>ギャラリー</span></h3>
         
         <GalleryList></GalleryList>
 

@@ -3,9 +3,11 @@ import Menu from '../components/parts/Menu.vue';
 import { ref } from 'vue';
 const isOpenMenu = ref(false);
 import News from '../components/parts/home/News.vue';
+import Header from '../components/parts/Header.vue';
 </script>
 
 <template>
+  <Header></Header>
   <div id="container">
     <main>
       <section>
