@@ -24,13 +24,16 @@ const props = defineProps({
         <router-link :to="{ name: 'gallery' }">Gallery<span>ギャラリー</span></router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'access' }">Access<span>アクセス</span></router-link>
-      </li>
-      <li>
         <router-link :to="{ name: 'recruit' }">Recruit<span>メンバー募集</span></router-link>
       </li>
       <li>
         <router-link :to="{ name: 'contact' }">Contact<span>お問い合わせ</span></router-link>
+      </li>
+      <li>
+        Rusults<span>大会記録</span>
+      </li>
+      <li>
+        <router-link :to="{ name: 'access' }">Access<span>アクセス</span></router-link>
       </li>
       <li>
         <a href="https://fccuore.info/blog/">Blog<span>クオーレブログ</span></a>

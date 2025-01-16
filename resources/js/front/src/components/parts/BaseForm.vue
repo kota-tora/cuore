@@ -42,11 +42,6 @@ const errors: Ref<{
 }> = ref({});
 
 const submit = () => {
-  console.log(name.value);
-  console.log(mail.value);
-  console.log(category.value);
-  console.log(content.value);
-
   axios
     .post(props.postUrl, {
       name: name.value,

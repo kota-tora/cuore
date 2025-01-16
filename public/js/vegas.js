@@ -36,7 +36,7 @@ function slideSp() {
         { src: './images/sp/IMG_07.jpg' },	//2枚目の写真指定
         { src: './images/sp/IMG_03_1.jpg' },	//3枚目の写真指定
         { src: './images/sp/IMG_03_2.jpg' },	//3枚目の写真指定
-        { src: './images/sp/IMG_03_3.jpg' },	//3枚目の写真指定
+        // { src: './images/sp/IMG_03_3.jpg' },	//3枚目の写真指定
         // { src: './images/sp/IMG_08.jpg' },	//2枚目の写真指定
         { src: './images/sp/IMG_09.jpg' },	//2枚目の写真指定
         // { src: './images/sp/IMG_10.jpg' },	//2枚目の写真指定
