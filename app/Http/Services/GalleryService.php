@@ -25,10 +25,14 @@ class GalleryService
      */
     public function getGalleryByApi($type = 'image')
     {
-        $galleries = $this->gallery->where('up_flg', 1)->where('type', $type)->get();
+        $galleries = $this->gallery->where('up_flg', 1)
+            ->where('type', $type)
+            ->orderBy('photo_date', 'desc')
+            ->orderBy('gallery_id', 'desc')
+            ->get();
         return $galleries->map(function ($record) {
             return [
-                'galleryId' => $record->category_id,
+                'galleryId' => $record->gallery_id,
                 'name' => $record->name,
                 'title' => $record->title,
                 'upFlg' => $record->up_flg,
