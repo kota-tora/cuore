@@ -20,7 +20,7 @@
 
         <!--スライドショー（vegas）-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
-        <script src="/js/vegas.js?20250117"></script>
+        <script src="/js/vegas.js?20250122"></script>
 
         <!--スライドショー（slick）-->
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
