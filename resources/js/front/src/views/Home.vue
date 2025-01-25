@@ -24,11 +24,13 @@ onMounted(function () {
     });
   }
   
-  const lunchADom = lunchA.value;
-  const lunchBDom = lunchB.value;
-  
-  IObserver.observe(lunchADom);
-  IObserver.observe(lunchBDom);
+  if (!isLoading.value) {
+    const lunchADom = lunchA.value;
+    const lunchBDom = lunchB.value;
+    
+    IObserver.observe(lunchADom);
+    IObserver.observe(lunchBDom);
+  }
 });
 
 
@@ -53,7 +55,7 @@ const pcSlideimg = [
 </script>
 <template>
 
-  <div v-show="isLoading">
+  <div v-if="isLoading">
     <div id="" class="loader">
       <Loading
         :active="true"
@@ -63,7 +65,7 @@ const pcSlideimg = [
       ></Loading>
     </div>
   </div>
-  <div v-show="!isLoading">
+  <div v-else>
     <!--スライドショー-->
     <div id="mainimg" class="background-slider">
       <Carousel
