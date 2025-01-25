@@ -2,36 +2,47 @@
 import FooterSlick from '../components/parts/FooterSlick.vue';
 import Menu from '../components/parts/Menu.vue';
 import News from '../components/parts/home/News.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 import { IObserver } from '../utils/IObserver';
 import Loading from 'vue3-loading-overlay';
 
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
-const lunchA = ref();
-const lunchB = ref();
+const lunchA = ref<Element | null>(null);
+const lunchB = ref<Element | null>(null);
 const isOpenMenu = ref(false);
 let isLoading = ref(true);
 
-onMounted(function () {
-  // ページの完全な読み込みを待つ
-  if (document.readyState === "complete") {
-    isLoading.value = false;
-  } else {
-    window.addEventListener("load", () => {
-      setTimeout(() => isLoading.value = false, 1000)
-    });
+onMounted( async function() {
+  await waitLoading();
+  // DOM の更新が完了するまで待つ
+  await nextTick();
+  // 要素が null でない場合のみ IObserver.observe を呼び出す
+  if (lunchA.value) {
+    IObserver.observe(lunchA.value);
   }
-  
-  if (!isLoading.value) {
-    const lunchADom = lunchA.value;
-    const lunchBDom = lunchB.value;
-    
-    IObserver.observe(lunchADom);
-    IObserver.observe(lunchBDom);
+  if (lunchB.value) {
+    IObserver.observe(lunchB.value);
   }
 });
+
+async function waitLoading() {
+  return new Promise<void>((resolve) => {
+    // ページの完全な読み込みを待つ
+    if (document.readyState === "complete") {
+      // ローディング終了
+      isLoading.value = false;
+      resolve();
+    } else {
+      // 読み込み中の場合は１秒待ってから、再帰
+      setTimeout(async () => {
+        await waitLoading();
+        resolve();
+      }, 1000);
+    }
+  });
+}
 
 
 const spSlideimg = [
