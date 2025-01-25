@@ -121,7 +121,7 @@ const pcSlideimg = [
         </section>
         
         <section>
-          <News :limit="3" :is-show-list-link="true"></News>
+<!--          <News :limit="3" :is-show-list-link="true"></News>-->
         </section>
       </main>
       
@@ -207,15 +207,15 @@ div.loader {
 /* フェードインアニメーション */
 @keyframes fadeEffect {
   0% { opacity: 0; transform: scale(1.5); } /* 少し拡大 */
-  10% { opacity: 0.5; transform: scale(1.45); }
-  20% { opacity: 0.5; transform: scale(1.4); }
-  30% { opacity: 0.6; transform: scale(1.35); }
-  40% { opacity: 0.6; transform: scale(1.3); }
-  50% { opacity: 0.7; transform: scale(1.25); }
-  60% { opacity: 0.7; transform: scale(1.2); }
-  70% { opacity: 0.8; transform: scale(1.15); }
-  80% { opacity: 0.8; transform: scale(1.1); }
-  90% { opacity: 0.9; transform: scale(1.05); }
+  10% { opacity: 0.8; transform: scale(1.45); }
+  20% { opacity: 0.8; transform: scale(1.4); }
+  30% { opacity: 0.8; transform: scale(1.35); }
+  40% { opacity: 0.9; transform: scale(1.3); }
+  50% { opacity: 0.9; transform: scale(1.25); }
+  60% { opacity: 0.9; transform: scale(1.2); }
+  70% { opacity: 0.9; transform: scale(1.15); }
+  80% { opacity: 1; transform: scale(1.1); }
+  90% { opacity: 1; transform: scale(1.05); }
   100% { opacity: 1; transform: scale(1); } /* 元のサイズ */
 }
 
