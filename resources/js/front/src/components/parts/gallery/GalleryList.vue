@@ -45,8 +45,25 @@ import { nextTick, onMounted, Ref, ref } from 'vue';
     })
     
     await nextTick();
-    isLoading.value = false;
+    await waitLoading();
   });
+
+async function waitLoading() {
+  return new Promise<void>((resolve) => {
+    // ページの完全な読み込みを待つ
+    if (document.readyState === "complete") {
+      // ローディング終了
+      isLoading.value = false;
+      resolve();
+    } else {
+      // 読み込み中の場合は１秒待ってから、再帰
+      setTimeout(async () => {
+        await waitLoading();
+        resolve();
+      }, 1000);
+    }
+  });
+}
   
   /**
    * スクロールを止める
@@ -114,7 +131,9 @@ import { nextTick, onMounted, Ref, ref } from 'vue';
   }
   
   const change = (index) => {
+    isLoading.value = true;
     isActiveTab.value = index;
+    waitLoading()
   }
 </script>
 
@@ -137,7 +156,7 @@ import { nextTick, onMounted, Ref, ref } from 'vue';
     
     <ul class="contents">
       <transition>
-        <li v-if="isActiveTab === '1'">
+        <li v-show="isActiveTab === '1'">
           <div ref="figure" class="list-container">
             <div ref="imgbox" v-for="(gallery, index) in galleries" class="list">
               <div
@@ -174,7 +193,7 @@ import { nextTick, onMounted, Ref, ref } from 'vue';
         </li>
       </transition>
       <transition>
-        <li v-if="isActiveTab === '2'">
+        <li v-show="isActiveTab === '2'">
           <div ref="figure" class="list-container">
             <div
               v-for="(video, index) in videGalleries"
