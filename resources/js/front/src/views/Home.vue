@@ -14,7 +14,20 @@ const lunchB = ref<Element | null>(null);
 const isOpenMenu = ref(false);
 let isLoading = ref(true);
 
+const isMobile = ref(false);
+const checkDevice = () => {
+  isMobile.value = window.innerWidth <= 768; // 768px以下ならSPと判定
+};
+
 onMounted( async function() {
+  checkDevice();
+  // デバイスによってスライドする画像の配列を切り替える
+  if (isMobile.value) {
+    slideImg.value = spSlideimg;
+  } else {
+    slideImg.value = pcSlideimg;
+  }
+  
   await waitLoading();
   // DOM の更新が完了するまで待つ
   await nextTick();
@@ -44,6 +57,7 @@ async function waitLoading() {
   });
 }
 
+let slideImg = ref<string[]>([]);
 
 const spSlideimg = [
   './images/sp/IMG_01.jpg',
@@ -85,7 +99,7 @@ const pcSlideimg = [
         :pause-autoplay-on-hover="false"
         :autoplay="4000"
       >
-        <Slide v-for="slide in spSlideimg" :key="slide">
+        <Slide v-for="slide in slideImg" :key="slide">
           <div class="carousel__item fade-animation">
             <img class="slide-img" :src="slide" alt="スライド画像" />
           </div>
@@ -139,7 +153,7 @@ const pcSlideimg = [
         </section>
         
         <section>
-<!--          <News :limit="3" :is-show-list-link="true"></News>-->
+          <News :limit="3" :is-show-list-link="true"></News>
         </section>
       </main>
       
@@ -212,6 +226,7 @@ div.loader {
 
 .slide-img {
   height: 100%;
+  width: 100%;
   max-width: 100%;
   display: none;
 }
