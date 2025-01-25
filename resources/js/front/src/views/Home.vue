@@ -20,7 +20,7 @@ onMounted(function () {
     isLoading.value = false;
   } else {
     window.addEventListener("load", () => {
-      isLoading.value = false;
+      setTimeout(() => isLoading.value = false, 1000)
     });
   }
   
