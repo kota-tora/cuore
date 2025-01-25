@@ -15,9 +15,14 @@ const isOpenMenu = ref(false);
 let isLoading = ref(true);
 
 onMounted(function () {
-  window.addEventListener("load", () => {
+  // ページの完全な読み込みを待つ
+  if (document.readyState === "complete") {
     isLoading.value = false;
-  });
+  } else {
+    window.addEventListener("load", () => {
+      isLoading.value = false;
+    });
+  }
   
   const lunchADom = lunchA.value;
   const lunchBDom = lunchB.value;
