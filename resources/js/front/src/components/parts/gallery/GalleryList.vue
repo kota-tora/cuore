@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
-  import { onMounted, Ref, ref } from 'vue';
+import { nextTick, onMounted, Ref, ref } from 'vue';
   import { galleryStore } from '../../../store/Gallery';
   import { Gallery } from '../../../types/src/store/Gallery';
   import { YoutubeMovie } from '../../../types/src/store/YoutubeMovie';
+  import Loading from 'vue3-loading-overlay';
   
   // ダイアログで表示している画像のindex
   const currentImageIndex = ref(0);
@@ -22,6 +23,8 @@
   let galleries = ref<Gallery[]>([])
   // 動画リスト格納場所
   let videGalleries = ref<YoutubeMovie[]>([])
+  // ローディングフラグ
+  let isLoading = ref(true);
   
   onMounted(async () => {
     // スクロール時イベント
@@ -40,6 +43,9 @@
     galleryVideoRecords.map((record: YoutubeMovie) => {
       videGalleries.value.push(record);
     })
+    
+    await nextTick();
+    isLoading.value = false;
   });
   
   /**
@@ -113,7 +119,17 @@
 </script>
 
 <template>
-  <div class="vue">
+  <div v-show="isLoading" class="vue">
+    <div id="" class="loader">
+      <Loading
+        :active="true"
+        :color="'#ffffff'"
+        :loader="'dots'"
+        :width="100"
+      ></Loading>
+    </div>
+  </div>
+  <div v-show="!isLoading" class="vue">
     <ul class="tabs">
       <li @click="change('1')" :class="{'active': isActiveTab === '1'}">画像</li>
       <li @click="change('2')" :class="{'active': isActiveTab === '2'}">動画</li>
@@ -344,5 +360,9 @@
     width: 100%;
     height: 100%;
     border: 0;
+  }
+  
+  div.loader {
+    text-align: center;
   }
 </style>
