@@ -1,10 +1,11 @@
 <script setup lang="ts">
 
-import { nextTick, onMounted, Ref, ref } from 'vue';
+  import { nextTick, onMounted, Ref, ref } from 'vue';
   import { galleryStore } from '../../../store/Gallery';
   import { Gallery } from '../../../types/src/store/Gallery';
   import { YoutubeMovie } from '../../../types/src/store/YoutubeMovie';
   import Loading from 'vue3-loading-overlay';
+  import { useIntersectionObserver } from "@vueuse/core";
   
   // ダイアログで表示している画像のindex
   const currentImageIndex = ref(0);
@@ -25,12 +26,52 @@ import { nextTick, onMounted, Ref, ref } from 'vue';
   let videGalleries = ref<YoutubeMovie[]>([])
   // ローディングフラグ
   let isLoading = ref(true);
+  let isMoreFetching = ref(false);
+  
+  const observerElement = ref(null);
+  
+  const perPage = 10;
+  let isAllFetched = ref(false);
+  
+  let page = ref(1);
+  
+  useIntersectionObserver(
+    observerElement,
+    ([entry]) => {
+      {
+        if (entry.isIntersecting && !isAllFetched.value) {
+          loadMoreImages();
+        }
+      }
+    },
+    { threshold: 0.5 }
+  )
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const loadMoreImages = async () => {
+    isMoreFetching.value = true;
+
+    // ギャラリー画像取得
+    await gallery.fetchImagesPart(page.value);
+    page.value++;
+    // 画像ギャラリーに追加
+    const galleryRecords = gallery.getGalleryList;
+    // limit件数よりも取得が少なければ全件ロード完了
+    if (galleryRecords.length < perPage) {
+      isAllFetched.value = true;
+    }
+    
+    galleryRecords.map((record: Gallery) => {
+      galleries.value.push(record);
+    })
+    await sleep(5000);
+    isMoreFetching.value = false;
+  };
   
   onMounted(async () => {
     // スクロール時イベント
     window.addEventListener('scroll', getScroll, {passive: false});
     // ギャラリー画像取得
-    await gallery.fetchAllImages()
+    await gallery.fetchImagesPart(1)
     // 画像ギャラリーに追加
     const galleryRecords = gallery.getGalleryList;
     galleryRecords.map((record: Gallery) => {
@@ -167,6 +208,19 @@ async function waitLoading() {
                 tabindex="0"
               >
                 <img :src="`storage/images/gallery/${gallery.name}`" alt="" />
+              </div>
+            </div>
+            <div ref="observerElement" class="text-center py-4">
+<!--              <p v-if="isMoreFetching">Loading...</p>-->
+              <div v-show="isMoreFetching" class="vue">
+                <div id="" class="loader">
+                  <Loading
+                    :active="true"
+                    :color="'#ffffff'"
+                    :loader="'spinner'"
+                    :width="100"
+                  ></Loading>
+                </div>
               </div>
             </div>
             <dialog ref="dialog" class="image-dialog custom-dialog" @click="handleCloseDialog()">
@@ -384,4 +438,8 @@ async function waitLoading() {
   div.loader {
     text-align: center;
   }
+  .text-center {
+    width: 100%;
+  }
+  
 </style>

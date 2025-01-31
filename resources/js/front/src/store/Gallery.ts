@@ -32,6 +32,16 @@ export const galleryStore = defineStore('gallery', {
           this.galleryList = response.data;
       }).catch((err) => console.log(err));
     },
+    async fetchImagesPart(page: number) {
+      await axios.get('api/get_images_parts', {
+        params: {
+          page: page
+        }
+      })
+        .then((response) => {
+          this.galleryList = response.data;
+        }).catch((err) => console.log(err));
+    },
     async fetchAllVideos() {
       await axios.get('api/get_all_gallery_by_type', {
         params: {

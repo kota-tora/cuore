@@ -44,6 +44,32 @@ class GalleryService
     }
 
     /**
+     * @param $page
+     * @return mixed
+     */
+    public function getImageGalleryByApi($page)
+    {
+        $perPage = 10; // 1回のリクエストで取得する件数
+
+        $galleries = $this->gallery->where('up_flg', 1)
+            ->where('type', 'image')
+            ->orderBy('photo_date', 'desc')
+            ->orderBy('gallery_id', 'desc')
+            ->paginate($perPage, ['*'], 'page', $page);
+        return $galleries->map(function ($record) {
+            return [
+                'galleryId' => $record->gallery_id,
+                'name' => $record->name,
+                'title' => $record->title,
+                'upFlg' => $record->up_flg,
+                'photoDate' => $record->photo_date,
+                'createdAt' => $record->created_at,
+                'updatedAt' => $record->updated_at,
+            ];
+        });
+    }
+
+    /**
      * @return mixed
      */
     public function getYoutubeMoviesByApi()

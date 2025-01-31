@@ -29,6 +29,7 @@
         "vuetify": "^3.5.11"
     },
     "dependencies": {
+        "@vueuse/core": "^12.5.0",
         "bootstrap-icons": "^1.11.3",
         "sweetalert2": "^11.14.2",
         "vue3-loading-overlay": "^0.0.0"
