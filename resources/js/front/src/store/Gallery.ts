@@ -42,6 +42,16 @@ export const galleryStore = defineStore('gallery', {
           this.galleryList = response.data;
         }).catch((err) => console.log(err));
     },
+    async fetchYoutubeVideosPart(page: number) {
+      await axios.get('api/get_youtube_movies_parts', {
+        params: {
+          page: page
+        }
+      })
+        .then((response) => {
+          this.youtubeMovieList = response.data;
+        }).catch((err) => console.log(err));
+    },
     async fetchAllVideos() {
       await axios.get('api/get_all_gallery_by_type', {
         params: {

@@ -35,4 +35,10 @@ class GalleryController extends Controller
         $page = $request->page ?? 1;
         return response($this->gallery_service->getImageGalleryByApi($page), 200);
     }
+
+    public function getUpYoutubeMoviesParts(Request $request)
+    {
+        $page = $request->page ?? 1;
+        return response($this->gallery_service->getYoutubeMoviesPartsByApi($page), 200);
+    }
 }

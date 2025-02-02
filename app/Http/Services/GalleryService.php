@@ -93,6 +93,28 @@ class GalleryService
         });
     }
 
+    public function getYoutubeMoviesPartsByApi($page)
+    {
+        $perPage = 10; // 1回のリクエストで取得する件数
+        $galleries = $this->youtube_movie
+            ->where('up_flg', 1)
+            ->orderBy('filming_date', 'desc')
+            ->orderBy('youtube_movie_id', 'desc')
+            ->paginate($perPage, ['*'], 'page', $page);
+
+        return $galleries->map(function ($record) {
+            return [
+                'youtubeMovieId' => $record->youtube_movie_id,
+                'url' => $record->url,
+                'title' => $record->title,
+                'upFlg' => $record->up_flg,
+                'filmingDate' => $record->filming_date,
+                'createdAt' => $record->created_at,
+                'updatedAt' => $record->updated_at,
+            ];
+        });
+    }
+
     /**
      * @param  Request  $request
      * @return bool

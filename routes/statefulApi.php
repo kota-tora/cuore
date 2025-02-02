@@ -14,4 +14,6 @@ Route::group([
     Route::get('get_all_gallery_by_type', 'GalleryController@getUpGalleries')->name('get_all_gallery_images');
     Route::get('get_images_parts', 'GalleryController@getImagesParts')->name('get_images_parts');
     Route::get('get_youtube_movies', 'GalleryController@getUpYoutubeMovies')->name('get_up_youtube_movies');
+    Route::get('get_youtube_movies_parts', 'GalleryController@getUpYoutubeMoviesParts')
+        ->name('get_up_youtube_movies_parts');
 });

@@ -29,11 +29,14 @@
   let isMoreFetching = ref(false);
   
   const observerElement = ref(null);
+  const videoElement = ref(null);
   
   const perPage = 10;
   let isAllFetched = ref(false);
+  let isAllVideoFetched = ref(false);
   
   let page = ref(1);
+  let videoPage = ref(1);
   
   useIntersectionObserver(
     observerElement,
@@ -45,7 +48,17 @@
       }
     },
     { threshold: 0.5 }
-  )
+  );
+  
+  useIntersectionObserver(
+    videoElement,
+    ([entry]) => {
+      if (entry.isIntersecting && !isAllVideoFetched.value) {
+        loadMoreVideos();
+      }
+    }
+  );
+  
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const loadMoreImages = async () => {
     isMoreFetching.value = true;
@@ -63,7 +76,27 @@
     galleryRecords.map((record: Gallery) => {
       galleries.value.push(record);
     })
-    await sleep(5000);
+    await sleep(3000);
+    isMoreFetching.value = false;
+  };
+  
+  const loadMoreVideos = async () => {
+    isMoreFetching.value = true;
+    
+    // 動画取得
+    await gallery.fetchYoutubeVideosPart(videoPage.value);
+    videoPage.value++;
+    // 動画ギャラリーに追加
+    const galleryVideoRecords = gallery.getYoutubeMovieList;
+    // limit件数よりも取得が少なければ全件ロード完了
+    if (galleryVideoRecords.length < perPage) {
+      isAllVideoFetched.value = true;
+    }
+    
+    galleryVideoRecords.map((record: YoutubeMovie) => {
+      videGalleries.value.push(record);
+    })
+    await sleep(3000);
     isMoreFetching.value = false;
   };
   
@@ -77,13 +110,15 @@
     galleryRecords.map((record: Gallery) => {
       galleries.value.push(record);
     })
+    page.value++;
     // 動画取得
-    await gallery.fetchYoutubeVideos();
+    await gallery.fetchYoutubeVideosPart(1);
     // 動画ギャラリーに追加
     const galleryVideoRecords = gallery.getYoutubeMovieList;
     galleryVideoRecords.map((record: YoutubeMovie) => {
       videGalleries.value.push(record);
     })
+    videoPage.value++;
     
     await nextTick();
     await waitLoading();
@@ -173,6 +208,7 @@ async function waitLoading() {
   
   const change = (index) => {
     isLoading.value = true;
+    isMoreFetching.value = false;
     isActiveTab.value = index;
     waitLoading()
   }
@@ -264,6 +300,18 @@ async function waitLoading() {
                   frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen>
                 </iframe>
+              </div>
+            </div>
+          </div>
+          <div ref="videoElement" class="text-center py-4">
+            <div v-show="isMoreFetching" class="vue">
+              <div id="" class="loader">
+                <Loading
+                  :active="true"
+                  :color="'#ffffff'"
+                  :loader="'spinner'"
+                  :width="100"
+                ></Loading>
               </div>
             </div>
           </div>
