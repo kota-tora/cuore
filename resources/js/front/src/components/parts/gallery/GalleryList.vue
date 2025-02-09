@@ -61,11 +61,12 @@
   
   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const loadMoreImages = async () => {
+    page.value++;
+    
     isMoreFetching.value = true;
 
     // ギャラリー画像取得
     await gallery.fetchImagesPart(page.value);
-    page.value++;
     // 画像ギャラリーに追加
     const galleryRecords = gallery.getGalleryList;
     // limit件数よりも取得が少なければ全件ロード完了
@@ -81,11 +82,11 @@
   };
   
   const loadMoreVideos = async () => {
+    videoPage.value++;
     isMoreFetching.value = true;
     
     // 動画取得
     await gallery.fetchYoutubeVideosPart(videoPage.value);
-    videoPage.value++;
     // 動画ギャラリーに追加
     const galleryVideoRecords = gallery.getYoutubeMovieList;
     // limit件数よりも取得が少なければ全件ロード完了
@@ -101,6 +102,7 @@
   };
   
   onMounted(async () => {
+    // page.value++;
     // スクロール時イベント
     window.addEventListener('scroll', getScroll, {passive: false});
     // ギャラリー画像取得
@@ -110,7 +112,6 @@
     galleryRecords.map((record: Gallery) => {
       galleries.value.push(record);
     })
-    page.value++;
     // 動画取得
     await gallery.fetchYoutubeVideosPart(1);
     // 動画ギャラリーに追加
@@ -118,7 +119,6 @@
     galleryVideoRecords.map((record: YoutubeMovie) => {
       videGalleries.value.push(record);
     })
-    videoPage.value++;
     
     await nextTick();
     await waitLoading();

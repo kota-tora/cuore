@@ -25,7 +25,10 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $lists = $this->gallery::where('type', 'image')->orderBy('photo_date', 'desc')->get();
+        $lists = $this->gallery::where('type', 'image')
+            ->orderBy('photo_date', 'desc')
+            ->orderBy('gallery_id', 'desc')
+            ->get();
         return view('admin.gallery.list.index', compact(['lists']));
     }
 
