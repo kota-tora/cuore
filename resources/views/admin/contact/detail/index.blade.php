@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td class="w-25">内容</td>
-                    <td>{{ $contact->content }}</td>
+                    <td>{!! nl2br($contact->content) !!}</td>
                 </tr>
                 <tr>
                     <td class="w-25">応募日時</td>

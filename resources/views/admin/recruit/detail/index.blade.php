@@ -50,11 +50,11 @@
                     </tr>
                     <tr>
                         <td class="w-25">経験</td>
-                        <td>{{ $recruit->experience }}</td>
+                        <td>{!! nl2br($recruit->experience) !!}</td>
                     </tr>
                     <tr>
                         <td class="w-25">質問</td>
-                        <td>{{ $recruit->question }}</td>
+                        <td>{!! nl2br($recruit->question) !!}</td>
                     </tr>
                     <tr>
                         <td class="w-25">応募日時</td>
