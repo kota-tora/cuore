@@ -233,6 +233,10 @@ li{
         padding-bottom: 8px;
         width: 200px;
         font-size: 16px;
+        transition: transform .2s;
+        &:active{
+            transform: scale(.95);
+        }
     }
 
     .Form-Btn-min {
@@ -249,6 +253,9 @@ li{
         padding-bottom: 8px;
         width: 30%;
         font-size: 16px;
+        &:active{
+            transform: scale(.95);
+        }
     }
 
     .contents{

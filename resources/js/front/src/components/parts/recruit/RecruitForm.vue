@@ -177,7 +177,8 @@ const fixContents = () => {
           <textarea name="question" v-model="question" class="Form-Item-Textarea"></textarea>
           <span v-for="error in errors.question" v-show="error" class="error-msg">{{ error }}</span>
         </div>
-        <input type="submit" @click="showConfirm" class="Form-Btn" value="確認画面へ" />
+<!--        <input type="submit" @click="showConfirm" class="Form-Btn" value="確認画面へ" />-->
+        <button @click="showConfirm" class="Form-Btn">確認画面へ</button>
       </div>
     </div>
     <div v-else class="thanks">
