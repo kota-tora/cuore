@@ -10,7 +10,7 @@
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
     <link rel="stylesheet" href="/css/style.css?20250106">
-    <link rel="stylesheet" href="/css/custom.css?20250106">
+    <link rel="stylesheet" href="/css/custom.css?20250213">
 
     @vite(['resources/css/app.css', 'resources/js/front/app.ts'])
 </head>
