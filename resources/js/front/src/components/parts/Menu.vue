@@ -35,9 +35,6 @@ const props = defineProps({
       <li>
         <router-link :to="{ name: 'access' }">Access<span>アクセス</span></router-link>
       </li>
-      <li>
-        <a href="https://fccuore.info/blog/">Blog<span>クオーレブログ</span></a>
-      </li>
     </ul>
   </nav>
 </template>
