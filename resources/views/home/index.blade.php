@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="静岡県西部のフットサルチームのFCクオーレホームページです。">
     <meta name="keywords" content="">
+    <meta name="robots" content="index,follow">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
     <link rel="stylesheet" href="/css/style.css?20250106">
     <link rel="stylesheet" href="/css/custom.css?20250213">
