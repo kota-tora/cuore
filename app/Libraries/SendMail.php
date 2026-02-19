@@ -3,6 +3,9 @@
 namespace App\Libraries;
 
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
 
 class SendMail extends Mailable
 {
@@ -13,7 +16,7 @@ class SendMail extends Mailable
     /**
      * @var string
      */
-    protected $content;
+    protected $mail_content;
     /**
      * @var string
      */
@@ -24,28 +27,32 @@ class SendMail extends Mailable
     protected $from_name;
 
     /**
-     * @param $mail_subject
-     * @param $content
-     * @param $send_from
-     * @param $from_name
+     * @param string $mail_subject
+     * @param string $mail_content
+     * @param string $send_from
+     * @param string $from_name
      */
-    public function __construct($mail_subject, $content, $send_from, $from_name)
+    public function __construct(string $mail_subject, string $mail_content, string $send_from, string $from_name)
     {
-        // 件名
         $this->mail_subject = $mail_subject;
-        // 本文
-        $this->content = $content;
-        // 送信元
+        $this->mail_content = $mail_content;
         $this->send_from = $send_from;
-        // 送信元(名前)
         $this->from_name = $from_name;
     }
 
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->text('mail_template.text_mail')
-            ->subject($this->mail_subject)
-            ->from($this->send_from, $this->from_name)
-            ->with('content', $this->content);
+        return new Envelope(
+            from: new Address($this->send_from, $this->from_name),
+            subject: $this->mail_subject,
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            text: 'mail_template.text_mail',
+            with: ['content' => $this->mail_content],
+        );
     }
 }

@@ -3,24 +3,30 @@
 namespace App\Http\Services;
 
 use App\Libraries\SendMail;
+use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Mockery\Exception;
 
 class MailService
 {
     /**
-     * @param $title
-     * @param $message
-     * @param $from
-     * @param $to
-     * @param $from_name
+     * @param string $title
+     * @param string $message
+     * @param string $from
+     * @param string $to
+     * @param string $from_name
      * @return bool
      */
-    public function send($title, $message, $from, $to, $from_name = '')
+    public function send(string $title, string $message, string $from, string $to, string $from_name = ''): bool
     {
         try {
             Mail::to($to)->send(new SendMail($title, $message, $from, $from_name));
         } catch (Exception $ex) {
+            Log::error('メール送信に失敗しました', [
+                'to' => $to,
+                'subject' => $title,
+                'error' => $ex->getMessage(),
+            ]);
             return false;
         }
 
