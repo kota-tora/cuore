@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RecruitRequest;
 use App\Http\Services\MailService;
 use App\Http\Services\RecruiteService;
-use App\Libraries\SendMail\SendMail;
 
 class RecruitController extends Controller
 {
@@ -26,8 +25,11 @@ class RecruitController extends Controller
     {
         $result = $this->recruit_service->create($request);
 
-        if ($result) {
-            $message = <<<EOF
+        if (!$result) {
+            return response('error', 500);
+        }
+
+        $message = <<<EOF
 メンバー応募がありました。
 
 名前：{$request['name']}
@@ -35,13 +37,17 @@ class RecruitController extends Controller
 性別：{$request['gender']}
 EOF;
 
-            $subject = 'メンバー応募がありました';
-            $from = config('admin.from_admin_mail');
-            $to = config('admin.to_admin_mail');
-            $from_name = config('admin.from_admin_name');
-            $this->mail_service->send($subject, $message, $from, $to, $from_name);
+        $subject = 'メンバー応募がありました';
+        $from = config('admin.from_admin_mail');
+        $to = config('admin.to_admin_mail');
+        $from_name = config('admin.from_admin_name');
+        $return_path = config('admin.return_path');
+        $sent = $this->mail_service->send($subject, $message, $from, $to, $from_name, $return_path);
 
-            return response('success', 200);
+        if (!$sent) {
+            return response('mail send failed', 500);
         }
+
+        return response('success', 200);
     }
 }
