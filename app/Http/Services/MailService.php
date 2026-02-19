@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Libraries\SendMail;
+use App\Mail\SendMail;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
