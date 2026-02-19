@@ -41,7 +41,8 @@ EOF;
         $from = config('admin.from_admin_mail');
         $to = config('admin.to_admin_mail');
         $from_name = config('admin.from_admin_name');
-        $sent = $this->mail_service->send($subject, $message, $from, $to, $from_name);
+        $return_path = config('admin.return_path');
+        $sent = $this->mail_service->send($subject, $message, $from, $to, $from_name, $return_path);
 
         if (!$sent) {
             return response('mail send failed', 500);

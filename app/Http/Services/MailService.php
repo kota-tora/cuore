@@ -17,10 +17,10 @@ class MailService
      * @param string $from_name
      * @return bool
      */
-    public function send(string $title, string $message, string $from, string $to, string $from_name = ''): bool
+    public function send(string $title, string $message, string $from, string $to, string $from_name = '', string $return_path = ''): bool
     {
         try {
-            Mail::to($to)->send(new SendMail($title, $message, $from, $from_name));
+            Mail::to($to)->send(new SendMail($title, $message, $from, $from_name, $return_path));
         } catch (Exception $ex) {
             Log::error('メール送信に失敗しました', [
                 'to' => $to,
